@@ -1,6 +1,6 @@
 import Constants from './Constants.jsx';
 import { useState } from 'react';
-import "./Card.css"
+
 
 const Tournament = () => {
   const [input, setInput] = useState("");

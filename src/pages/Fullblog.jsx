@@ -1,7 +1,7 @@
 import React from "react";
 import blogConstants from "./blogConstants";
 import { useLocation } from "react-router-dom";
-import "./Fullblog.css"; // Import the CSS file
+
 
 function Fullblog() {
   const location = useLocation();
