@@ -1,8 +1,9 @@
 import blogConstants from "./blogConstants.jsx";
-import "./Card.css";
+
 import Fullblog from "./Fullblog.jsx";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -14,7 +15,25 @@ const Blog = () => {
       state: { blog }, // pass the blog object as state
     });
   };
+  const [input, setInput] = useState("");
 
+  const search = () => {
+    const foundItem = blogConstants.filter((blog) =>
+      blog.description.toLowerCase().includes(input.toLowerCase()) ||
+     blog.date.toLowerCase().includes(input.toLowerCase()) ||
+      blog.author.toLowerCase().includes(input.toLowerCase())
+    );
+    if (foundItem.length > 0) {
+      console.log("Item found:", foundItem);
+      return foundItem;
+    } else {
+      console.log("No items found");
+      return [];
+    }
+  };
+  const handleSearch = (e) => {
+    setInput(e.target.value);
+  };
   return (
     <>
       <div className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden">
@@ -40,7 +59,9 @@ const Blog = () => {
                   <input
                     placeholder="Search"
                     className="form-input flex min-w-[100px]flex-1 resize-none overflow-hidden rounded-xl h-70 text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-full placeholder:text-[#637588] px-4 rounded-l-none border-l-0 pl-2 text-lg font-normal leading-normal"
-                    value=""
+                    value={input}
+                   onChange={handleSearch}
+              
                   />
                 </div>
               </label>
@@ -60,7 +81,7 @@ const Blog = () => {
                 </div>
               </div>
               <div className="grid grid-cols-[repeat(auto-fit,minmax(158px, 1fr))] gap-3 p-4">
-                {blogConstants.map((blog) => (
+                {search().length > 0 ? search().map((blog) => (
                   <div key={blog.id} className="flex flex-col gap-3 pb-3">
                     <div
                       className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
@@ -69,6 +90,9 @@ const Blog = () => {
                     <div>
                       <p className="text-[#111418] text-lg font-bold leading-normal py-4">
                         {blog.title}
+                      </p>
+                      <p className="text-[#637588] text-lg font-normal leading-normal py-5">
+                        {blog.description}
                       </p>
                       <p className="text-[#637588] text-lg font-normal leading-normal py-5">
                         {blog.author} · {blog.date}
@@ -81,7 +105,7 @@ const Blog = () => {
                       </button>
                     </div>
                   </div>
-                ))}
+                )) : <p>No items found</p>}
               </div>
             </div>
           </div>
