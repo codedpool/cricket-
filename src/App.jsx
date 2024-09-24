@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import Signup from './pages/Signup'
 import RegistrationForm from './pages/RegisterationForm'
 import Register from './pages/Register'
+import Login from './pages/Login'
 function App() {
  
   return (
@@ -22,6 +23,7 @@ function App() {
   <Route path="/" element={<Home/>}/>
   <Route path="/signup" element={<Signup/>}/>
   <Route path="/register" element={<Register/>}/>
+  <Route path="/login" element={<Login/>}/>
   <Route path="/tournament" element={<Tournament/>}/>
   <Route path="/blogs" element={<Blog/>}/>
   <Route path="/blogs/blog" element={<Fullblog/>}/>

@@ -109,7 +109,7 @@ const Home = () => {
 
             <h2 className="text-[#121711] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Series</h2>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-10 p-4">
-              <div className="flex flex-col gap-10 pb-3">
+              <div className="flex flex-col gap-3 pb-3">
                 <div
                   className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
                   style={{
@@ -149,10 +149,15 @@ const Home = () => {
                 <div
                   className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
                   style={{
-                    backgroundImage: `url("https://cdn.usegalileo.ai/sdxl10/366 c28ca-f52a-4bc4-aa5e-0a838ffd0f85.png")`,
+                    backgroundImage: `url("https://cdn.usegalileo.ai/sdxl10/e0c3d455-4e1b-4a7a-96a5-5a9b86d75eb7.png")`,
                   }}
                 ></div>
+                <div>
+                  <p className="text-[#121711] text-base font-medium leading-normal">New Zealand vs Sri Lanka</p>
+                  <p className="text-[#6a8764] text-sm font-normal leading-normal">4th ODI</p>
+                </div>
               </div>
+             
               </div>
             <h2 className="text-[#121711] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Latest News</h2>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
@@ -168,18 +173,7 @@ const Home = () => {
                   <p className="text-[#6a8764] text-sm font-normal leading-normal">2 hours ago</p>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 pb-3">
-                <div
-                  className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
-                  style={{
-                    backgroundImage: `url("https://cdn.usegalileo.ai/stability/1de9c3ba-93f7-4817-aaf2-ba45a8e91f24.png")`,
-                  }}
-                ></div>
-                <div>
-                  <p className="text-[#121711] text-base font-medium leading-normal">England vs South Africa: 1st T20I Preview</p>
-                  <p className="text-[#6a8764] text-sm font-normal leading-normal">1 day ago</p>
-                </div>
-              </div>
+              
             </div>
           </div>
           </div>
