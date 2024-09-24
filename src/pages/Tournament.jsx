@@ -3,13 +3,14 @@ import { useState } from 'react';
 
 
 const Tournament = () => {
-  const [input, setInput] = useState("");
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   const search = () => {
     const foundItem = Constants.filter((match) =>
-      match.matchDescription.toLowerCase().includes(input.toLowerCase()) ||
-      match.matchDate.toLowerCase().includes(input.toLowerCase()) ||
-      match.matchFormat.toLowerCase().includes(input.toLowerCase())
+      match.matchDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      match.matchDate.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      match.matchFormat.toLowerCase().includes(searchTerm.toLowerCase())
     );
     if (foundItem.length > 0) {
       console.log("Item found:", foundItem);
@@ -20,76 +21,130 @@ const Tournament = () => {
     }
   };
 
-  const handleSearch = (e) => {
-    setInput(e.target.value);
-  };
 
-  return (
-    <div className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style={{ fontFamily: 'Newsreader, "Noto Sans", sans-serif' }}>
-      <div className="layout-container flex h-full grow flex-col">
-        <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f4f0] px-10 py-3">
-          <div className="flex items-center gap-4 text-[#111811]">
-            <div className="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
-                  fill="currentColor"
-                ></path>
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-            <h2 className="text-[#111811] text-lg font-bold leading-tight tracking-[-0.015em]">Cricket Calendar</h2>
+
+
+return (
+  <div
+    className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden"
+    style={{
+      fontFamily: '"Plus Jakarta Sans", "Noto Sans", sans-serif',
+    }}
+  >
+    <div className="layout-container flex h-full grow flex-col">
+      <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f1f4f0] px-10 py-3">
+        <div className="flex items-center gap-4 text-[#121711]">
+          <div className="size-4">
+            <svg
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
+                fill="currentColor"
+              ></path>
+            </svg>
           </div>
-          <div className="flex flex-1 justify-end gap-8">
-            <div className="flex items-center gap-9">
-              <a className="text-[#111811] text-sm font-medium leading-normal" href="#">Upcoming Events</a>
-              <a className="text-[#111811] text-sm font-medium leading-normal" href="#">Series</a>
-              <a className="text-[#111811] text-sm font-medium leading-normal" href="#">Countries</a>
-              <a className="text-[#111811] text-sm font-medium leading-normal" href="#">Teams</a>
-            </div>
-            <div className="flex gap-2">
-             
+          <h2 className="text-[#121711] text-lg font-bold leading-tight tracking-[-0.015em]">
+            Cricketer
+          </h2>
+        </div>
+        <div className="flex flex-1 justify-end gap-8">
+          <div className="flex items-center gap-9">
            
-            </div>
-            <div
-              className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              style={{ backgroundImage: 'url("https://cdn.usegalileo.ai/stability/def10d76-fe3a-41c1-b5bf-de10451d39f2.png")' }}
-            ></div>
           </div>
-        </header>
-        <div className="px-40 flex flex-1 justify-center py-5">
-          <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div className="flex flex-wrap justify-between gap-3 p-4">
-              <p className="text-[#111811] text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Upcoming Cricket Matches</p>
-            </div>
-            <input
-              type="text"
-              placeholder="Search..."
-              value={input}
-              onChange={handleSearch}
-              className='search'
-            />
-            {search().length > 0 ? search().map((match) => (
-              <div key={match.matchDescription} className="match-card">
-                <img src={match.img}/>
-                <h3>{match.matchDescription}</h3>
-                <p>{match.matchDate}</p>
-                <p>{match.matchFormat}</p>
+          
+        </div>
+      </header>
+      <div className="px-40 flex flex-1 justify-center ">
+        <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
+          <div className="@container">
+            <div className="@[480px]:p-4">
+              <div
+                className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://cdn.usegalileo.ai/sdxl10/4f95bf13-8ceb-40bb-a9a7-5deb3d234dfc.png")',
+                }}
+              >
+                <div className="flex flex-col gap-2 text-center">
+                  <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                    The World of Cricket
+                  </h1>
+                  <h2 className="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                    Buy tickets for the latest cricket matches, or find out
+                    more about cricket tournaments and events.
+                  </h2>
+                </div>
+                <label className="flex flex-col min-w-40 h-14 w-full max-w-[480px] @[480px]:h-16">
+                  <div className="flex w-full flex-1 items-stretch  rounded-xl h-full">
+                    <div className="text-[#6a8764] flex border border-[#dde5dc] bg-white items-center justify-center pl-[15px] rounded-l-xl border-r-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20px"
+                        height="20px"
+                        fill="currentColor"
+                        viewBox="0 0 256 256"
+                      >
+                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                      </svg>
+                    </div>
+                    <input
+                      placeholder="Search tournaments, teams, players"
+                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden  text-[#121711] focus:outline-0 focus:ring-0 border border-[#dde5dc] bg-white focus:border-[#dde5dc] h-full placeholder:text-[#6a8764] px-[15px] rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <div className="flex items-center justify-center rounded-r-xl border-l-0 border border-[#dde5dc] bg-white pr-[7px]">
+                    
+                    </div>
+                  </div>
+                </label>
               </div>
-            )) : <p>No items found</p>}
+            </div>
           </div>
+
+          <div className="flex flex-col gap-2">
+  {search().length > 0 ? (
+    <div className="flex justify-between flex-wrap">
+      {search().map((match) => (
+        <div
+          key={match.id}
+          className="w-full md:w-1/2 xl:w-1/2 p-4"
+        >
+          <div className="flex items-center gap-6 py-19.5 px-9">
+            <div
+              className="bg-center bg-no-repeat aspect-video bg-cover rounded-lg h-28 w-fit"
+              style={{ backgroundImage: `url(${match.img})` }}
+            ></div>
+            <div className="flex flex-col justify-center">
+              <p className="text-[#121711] text-base font-medium leading-normal ">
+                {match.matchDescription}
+              </p>
+              <p className="text-[#6a8764] text-sm font-normal leading-normal line-clamp-2 py-0.5">
+                {match.matchFormat}
+              </p>
+              <p className="text-[#6a8764] text-sm font-normal leading-normal  py-4">
+                {match.venueInfo.venueName}, {match.venueInfo.country}
+              </p>
+              <p className="text-[#6a8764] text-sm font-normal leading-normal line-clamp-2">
+                {match.matchDate}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p>No matches found.</p>
+  )}
+</div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Tournament;
-
