@@ -4,6 +4,7 @@ import Fullblog from "./Fullblog.jsx";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import Logo from "./Logo.jsx";
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ const Blog = () => {
     const foundItem = blogConstants.filter((blog) =>
       blog.description.toLowerCase().includes(input.toLowerCase()) ||
      blog.date.toLowerCase().includes(input.toLowerCase()) ||
-      blog.author.toLowerCase().includes(input.toLowerCase())
+      blog.author.toLowerCase().includes(input.toLowerCase())||
+      blog.title.toLowerCase().includes(input.toLowerCase())
     );
     if (foundItem.length > 0) {
       console.log("Item found:", foundItem);
@@ -39,19 +41,7 @@ const Blog = () => {
       <div className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden">
         <div className="layout-container flex h-full grow flex-col">
           <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] px-10 py-3">
-            <div className="flex items-center gap-4 text-[#111418]">
-              <div className="size-4">
-                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-              <h2 className="text-[#111418] text-2xl font-bold leading-tight tracking-[-0.015em]">Cricket World</h2>
-            </div>
+          <Logo/>
             <div className="flex flex-1 justify-end gap-8">
               <label className="flex flex-col min-w-250 !h-10 max-w-300">
                 <div className="flex w-full flex-1 items-stretch rounded-xl h-full">
@@ -84,7 +74,7 @@ const Blog = () => {
                 {search().length > 0 ? search().map((blog) => (
                   <div key={blog.id} className="flex flex-col gap-3 pb-3">
                     <div
-                      className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                      className="w-full bg-center bg-no-repeat aspect-video bg-cover"
                       style={{ backgroundImage: `url(${blog.img})` }}
                     ></div>
                     <div>

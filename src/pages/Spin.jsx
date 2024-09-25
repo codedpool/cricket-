@@ -1,6 +1,8 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./spin.css";
 import Confetti from 'react-confetti';
+import Logo from './Logo.jsx'; // Adjust the path as necessary
+
 function Spin() {
   const [angle, setAngle] = useState(0);
   const [spinning, setSpinning] = useState(false);
@@ -15,7 +17,7 @@ function Spin() {
   const [showWheelAgain, setShowWheelAgain] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiTimeoutId, setConfettiTimeoutId] = useState(null);
-  const [elapsedTime, setElapsedTime] = useState(0); // New state variable for elapsed time
+  const [elapsedTime, setElapsedTime] = useState(0); 
 
   const prizes = ["Sachin Tendulkar", "MS Dhoni", "Virat Kohli", "Yuvraj Singh", "Kapil Dev", "Rohit Sharma", "Sunil Gavaskar", "Rahul Dravid"];
   const segments = prizes.length;
@@ -126,7 +128,7 @@ function Spin() {
       setShowQuiz(false);
       setShowPrize(false);
       setShowWheelAgain(false);
-
+      setSpinning(false);
       const newAngle = Math.floor(3600 + Math.random() * 360);
       setAngle((prevAngle) => prevAngle + newAngle);
 
@@ -137,7 +139,7 @@ function Spin() {
         const prize = prizes[segments - 1 - selectedIndex];
         setSelectedPrize(prize);
 
-        setSpinning(false);
+    
         setShowPrize(true);
 
         if (prizeSpecificQuestions[prize]) {
@@ -157,7 +159,7 @@ function Spin() {
       setShowConfetti(true);
       const timeoutId = setTimeout(() => {
         setShowConfetti(false);
-      }, 5000); // Stop the confetti animation after 1 second
+      }, 5000); // Stop the confetti animation after 5 seconds
       setConfettiTimeoutId(timeoutId);
     } else {
       setFeedback("Wrong! ❌");
@@ -189,45 +191,58 @@ function Spin() {
     setShowWheelAgain(false);
     setElapsedTime(0); // Reset elapsed time
   };
+
   useEffect(() => {
     let intervalId;
-    if(spinning==true){
+  
+    // Start timer when the quiz starts
+    if (showQuiz && !quizComplete) {
       intervalId = setInterval(() => {
         setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
       }, 1000);
     }
-    if(quizComplete==true)
-    return () => {
+  
+    // Clear interval when quiz completes or showQuiz becomes false
+    if (quizComplete || !showQuiz) {
       clearInterval(intervalId);
+    }
+  
+    return () => {
+      clearInterval(intervalId); // Cleanup on unmount
     };
-    }, [quizComplete,spinning]);
-    useEffect(() => {
-      return () => {
-        if (confettiTimeoutId) {
-          clearTimeout(confettiTimeoutId);
-        }
-      };
-    }, [confettiTimeoutId]);
-    
+  }, [showQuiz, quizComplete]);
+  
 
-    return (
-      <div className="fullcontainer">
+  useEffect(() => {
+    return () => {
+      if (confettiTimeoutId) {
+        clearTimeout(confettiTimeoutId);
+      }
+    };
+  }, [confettiTimeoutId]);
+
+  return (
+    <div className="fullcontainer">
       <div className="App">
-        {showConfetti && <Confetti count={100} size={20} gravity={0.1} colors={['#FF69B4', '#FFC67D', '#8BC34A']}  duration={1000}  />}
-        <div className="timer-container">
-        <div className="stopwatch">
-          <div className="stopwatch-display">
-            <span className="stopwatch-hours">{Math.floor(elapsedTime / 3600)}</span>:
-            <span className="stopwatch-minutes">{Math.floor((elapsedTime % 3600) / 60)}</span>:
-            <span className="stopwatch-seconds">{elapsedTime % 60}</span>
-          </div>
-          
+        {showConfetti && <Confetti count={100} size={20} gravity={0.1} colors={['#FF69B4', '#FFC67D', '#8BC34A']} duration={1000} />}
+     
+        <div className="logo-container">
+            
+       <Logo/>
         </div>
-      </div>
+
+        <div className="timer-container">
+          <div className="stopwatch">
+            <div className="stopwatch-display">
+              <span className="stopwatch-hours">{Math.floor(elapsedTime / 3600)}</span>:
+              <span className="stopwatch-minutes">{Math.floor((elapsedTime % 3600) / 60)}</span>:
+              <span className="stopwatch-seconds">{elapsedTime % 60}</span>
+            </div>
+          </div>
+        </div>
 
         <div className="wheel-container">
-        
-          <div className="wheel" style={{ transform: `rotate(${angle}deg)` }}>
+          <div className="wheel" style={{ transform: `rotate(${angle}deg) `}}>
             {prizes.map((prize, index) => (
               <div key={index} className="segment">
                 {prize}
@@ -235,18 +250,16 @@ function Spin() {
             ))}
           </div>
         </div>
-  
+
         {showPrize && !spinning && (
           <div className="prize-display">
             <h1>Get Ready to Spin!</h1>
             <p>Your Topic is: <strong>{selectedPrize}</strong></p>
-           
           </div>
         )}
-  
+
         {!spinning && showQuiz && !quizComplete && (
           <div className="quiz-container">
- 
             <h3>
               Question {currentQuestionIndex + 1}/{prizeSpecificQuestions[selectedPrize].length}
             </h3>
@@ -270,7 +283,7 @@ function Spin() {
             {selectedAnswer && <button className="btn" onClick={handleNextQuestion}>Next Question</button>}
           </div>
         )}
-  
+
         {quizComplete && (
           <div className="quiz-complete">
             <h1>Quiz Complete!</h1>
@@ -279,20 +292,19 @@ function Spin() {
             </p>
           </div>
         )}
-  
+
         {!spinning && (showQuiz || quizComplete || showPrize) && (
           <button className="btn" onClick={resetGame}>Play Again</button>
         )}
-  
+
         {!spinning && !selectedPrize && !showQuiz && !quizComplete && !showPrize && (
           <button onClick={spinWheel} disabled={spinning} className="btn">
             {spinning ? "Spinning..." : "Spin the Wheel"}
           </button>
-         
         )}
       </div>
-      </div>
-    );
-  }
-  
-  export default Spin;
+    </div>
+  );
+}
+
+export default Spin;

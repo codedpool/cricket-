@@ -16,7 +16,7 @@ export default [
       "umpire1": "Ravi",
       "umpire2": "Ian",
       "umpire3": "Nitin",
-      "matchDate": "2023-03-15"
+      "matchDate": "01-10-2024"
     },
     {
       "matchDescription": "England vs Pakistan",
@@ -54,7 +54,7 @@ export default [
       "umpire1": "Marais",
       "umpire2": "Adrian",
       "umpire3": "Shaun",
-      "matchDate": "2023-03-19"
+      "matchDate": "08-10-2024"
     },
     {
       "matchDescription": "West Indies vs Sri Lanka",
@@ -73,7 +73,7 @@ export default [
       "umpire1": "Graham",
       "umpire2": "Joel",
       "umpire3": "Nigel",
-      "matchDate": "2023-03-21"
+      "matchDate": "21-10-2024"
     },
     {
       "matchDescription": "Bangladesh vs Zimbabwe",
@@ -92,7 +92,7 @@ export default [
       "umpire1": "Enamul",
       "umpire2": "Sharfuddoula",
       "umpire3": "Masudur",
-      "matchDate": "2023-03-23"
+      "matchDate": "24-10-2024"
     },
     {
       "matchDescription": "Afghanistan vs Ireland",
@@ -111,7 +111,7 @@ export default [
       "umpire1": "Ahmed",
       "umpire2": "Bismillah",
       "umpire3": "Izatullah",
-      "matchDate": "2023-03-25"
+      "matchDate": "29-10-2024"
     },
     {
       "matchDescription": "Scotland vs Netherlands",
@@ -130,7 +130,7 @@ export default [
       "umpire1": "Mark",
       "umpire2": "Ian",
       "umpire3": "David",
-      "matchDate": "2023-03-27"
+      "matchDate": "01-11-2024"
     },
     {
       "matchDescription": "Hong Kong vs United Arab Emirates",
@@ -149,6 +149,6 @@ export default [
       "umpire1": "Buddhi",
       "umpire2": "Iftikhar",
       "umpire3": "Shiju",
-      "matchDate": "2023-03-29"
+      "matchDate": "03-11-2024"
     }
   ]

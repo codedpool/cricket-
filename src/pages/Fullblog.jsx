@@ -1,42 +1,25 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import Logo from "./Logo";
 
 function Fullblog() {
   const location = useLocation();
   const blog = location.state.blog;
-  const [text, setText] = React.useState('');
-{console.log(window.location.href)}
-  
-  
 
- 
-    const handleCopyClick = async () => {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        alert('URL copied to clipboard!');
-      } catch (error) {
-        console.error('Error copying to clipboard:', error);
-      }
+  const handleCopyClick = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert('URL copied to clipboard!');
+    } catch (error) {
+      console.error('Error copying to clipboard:', error);
     }
-  
+  };
 
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden">
       <div className="layout-container flex h-full grow flex-col">
         <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f4f0] px-10 py-3">
-          <div className="flex items-center gap-4 text-[#111811]">
-            <div className="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-            <h2 className="text-[#111811] text-2xl font-bold leading-tight tracking-[-0.015em]">Sports World</h2>
-          </div>
+       <Logo/>
           <div className="flex flex-1 justify-end gap-8">
             <div className="flex items-center gap-9">
               <a className="text-[#111811] text-sm font-medium leading-normal" href="#">Home</a>
@@ -66,8 +49,22 @@ function Fullblog() {
                       <button className="flex min-w-[100px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-100 px-4 bg-[#14b814] text-white text-sm font-bold leading-normal">
                         <span className="truncate">Read time: 6 minutes</span>
                       </button>
-                      
-                    </div>
+                      </div>
+                      {/* New Block */}
+                      <div className="flex gap-4">
+                        <div
+                          className="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32"
+                          style={{ backgroundImage: `url(${blog.img})` }}
+                        ></div>
+                        <div className="flex flex-col justify-center">
+                          <p className="text-[#111811] text-[22px] font-bold leading-tight tracking-[-0.015em]">{blog.author}</p>
+                          <p className="text-[#638863] text-base font-normal leading-normal">{blog.date}</p>
+                          <p className="text-[#638863] text-base font-normal leading-normal">Published on July 12, 2022</p>
+                        </div>
+                      </div>
+                      {/* End New Block */}
+
+                  
                   </div>
                 </div>
               </div>
@@ -89,7 +86,6 @@ function Fullblog() {
                   <p className="text-[#638863] text-base font-normal leading-normal">Let your friends know about this article</p>
                 </div>
                 <div className="flex items-center gap-4">
-                
                   <button
                     onClick={handleCopyClick}
                     className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#14b814] text-white text-sm font-medium leading-normal"
