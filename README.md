@@ -34,4 +34,3 @@ Lucide React: A library for customizable icons used throughout the application.
 Conclusion
 This solution highlights our implementation of a feature-rich cricket-themed website, showcasing our web development skills and creativity. The application serves as a complete platform for cricket enthusiasts, providing information, engagement, and interactivity.
 
-Feel free to reach out for any questions or suggestions regarding additional features!
